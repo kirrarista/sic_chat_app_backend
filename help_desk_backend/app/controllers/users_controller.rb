@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   # POST /auth/register
   def register
-    user = User.new(user_params)
+    user = User.new(params.permit(:username, :password))
 
     if user.save
+      session[:user_id] = user.id
       token = generate_jwt(user)
 
       render json: {
@@ -25,8 +26,9 @@ class UsersController < ApplicationController
     user = User.find_by(username: params[:username])
 
     if user&.authenticate(params[:password])
+      session[:user_id] = user.id
       token = generate_jwt(user)
-      
+
       render json: {
         user: {
           id: user.id,
@@ -48,13 +50,64 @@ class UsersController < ApplicationController
     render json: { message: "Logged out successfully" }, status: :ok
   end
 
-  private
+  # POST /auth/refresh
+  def refresh
+    user_id = session[:user_id]
 
-  def user_params
-    params.require(:user).permit(:username, :password)
+    if user_id.nil?
+      render json: { error: "No session found" }, status: :unauthorized
+      return
+    end
+
+    user = User.find_by(id: user_id)
+
+    if user.nil?
+      reset_session
+      render json: { error: "No session found" }, status: :unauthorized
+      return
+    end
+
+    token = generate_jwt(user)
+
+    render json: {
+      user: {
+        id: user.id,
+        username: user.username,
+        created_at: user.created_at.iso8601,
+        last_active_at: user.last_active_at&.iso8601
+      },
+      token: token
+    }, status: :ok
   end
 
+  # GET /auth/me
+  def me
+    user_id = session[:user_id]
+
+    if user_id.nil?
+      render json: { error: "No session found" }, status: :unauthorized
+      return
+    end
+
+    user = User.find_by(id: user_id)
+
+    if user.nil?
+      reset_session
+      render json: { error: "No session found" }, status: :unauthorized
+      return
+    end
+
+    render json: {
+      id: user.id,
+      username: user.username,
+      created_at: user.created_at.iso8601,
+      last_active_at: user.last_active_at&.iso8601
+    }, status: :ok
+  end
+
+  private
+
   def generate_jwt(user)
-    "jwt_token_placeholder"
+    JwtService.encode(user)
   end
 end

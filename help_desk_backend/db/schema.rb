@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_10_055151) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_10_110433) do
+  create_table "expert_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.json "knowledge_base_links"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_expert_profiles_on_user_id", unique: true
+  end
+
   create_table "sessions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "data"
@@ -28,4 +37,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_10_055151) do
     t.string "username", null: false
     t.index ["username"], name: "index_users_on_username", unique: true
   end
+
+  add_foreign_key "expert_profiles", "users"
 end
