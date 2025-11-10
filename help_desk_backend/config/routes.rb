@@ -1,4 +1,3 @@
 Rails.application.routes.draw do
-  resources :blog_entries
-  root 'blog_entries#index'
+  get '/health', to: 'health#show'
 end
