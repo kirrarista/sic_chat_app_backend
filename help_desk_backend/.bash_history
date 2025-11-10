@@ -90,3 +90,146 @@ bin/rails db:test:prepare
 bin/rails test test/controllers/health_controller_test.rb
 bin/rails db:test:prepare
 exit
+rails test
+e
+rails db:drop db:create db:migrate
+RAILS_ENV=test rails db:drop db:create db:migrate
+rails test
+ls
+ls db
+ls db/migrate
+ls app/models | grep blog
+grep -R "blog" test/
+grep -R "blog" app/
+rm test/fixtures/blog_entries.yml
+rails db:drop db:create db:migrate
+RAILS_ENV=test rails db:drop db:create db:migrate
+grep -R "blog_entries" .
+ls db/migrate 
+ls db/migrate | grep blog
+rm db/migrate/*create_blog_entries*.rb
+ls test/fixtures | grep blog
+t
+rm test/fixtures/blog_entries.yml
+ls app/models | grep blog
+rails db:drop db:create db:migrate
+RAILS_ENV=test rails db:drop db:create db:migrate
+rails tmp:clear
+rails log:clear
+rails test
+rails server -b 0.0.0.0 -p 3000
+rails generate model User username:string:unique password_digest:string last_active_at:datetime
+rails generate model User username:string password_digest:string last_active_at:datetime
+rails db:migrate
+bundle install
+rails test test/models/user_test.rb 
+rails test test/models/user_test.rb 
+rails test test/models/user_test.rb 
+rails test
+rails generate controller Users
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails console
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails dbconsole
+.schema users
+rails dbconsole
+rails dbconsole
+rails dbconsole
+rails dbconsole
+rails console
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test
+rails test
+rails test test/controllers/users_controller_test.rb 
+rails server -b 0.0.0.0 -p 3000
+rails server -b 0.0.0.0 -p 3000
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails server -b 0.0.0.0 -p 3000
+rails test test/controllers/users_controller_test.rb 
+rails server -b 0.0.0.0 -p 3000
+rails test
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test
+rails test
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/controllers/users_controller_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test test/requests/auth_test.rb 
+rails test
+rails generate model ExpertProfile user:references bio:text
+rails db:migrate
+rails db:migrate RAILS_ENV=test
+rails test test/requests/auth_test.rb 
+rails generate model Conversation title:string status:string initiator:references assigned_expert:references last_message_at:datetime
+rails generate model Message conversation:references sender:references sender_role:string content:text is_read:boolean
+rails generate model ExpertAssignment conversation:references expert:references status:string assigned_at:datetime resolved_at:datetime rating:integer
+rails db:migrarte
+rails db:migrate
+rails db:migrate RAILS_ENV=test
+rails generate controller Conversations
+rails test test/requests/conversations_test.rb 
+rails test test/requests/conversations_test.rb 
+rails test test/requests/conversations_test.rb 
+rails test test/requests/conversations_test.rb 
+rails test test/requests/conversations_test.rb 
+rails test
+rails test
+rails generate controller Messages --no-helper --no-assets --no-template-engine
+rails test
+rails test
+rails test
+rails generate controller Expert --no-helper --no-assets --no-template-engine
+rails test
+rails generate controller Api --no-helper --no-assets --no-template-engine
+rails test
+rails server -b 0.0.0.0 -p 3000
+rails test
+rails test
+rails server -b 0.0.0.0 -p 3000
+rails test
+rails server -b 0.0.0.0 -p 3000
+exit
+sudo chown -R rails:rails .
+chown -R rails:rails .
+exit
+rails server -b 0.0.0.0 -p 3000
+exit

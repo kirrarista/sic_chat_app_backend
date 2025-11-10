@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # POST /auth/register
   def register
-    user = User.new(params.permit(:username, :password))
+    user_params = params[:user] ? params.require(:user).permit(:username, :password) : params.permit(:username, :password)
+    user = User.new(user_params)
 
     if user.save
       user.create_expert_profile
@@ -25,9 +26,10 @@ class UsersController < ApplicationController
 
   # POST /auth/login
   def login
-    user = User.find_by(username: params[:username])
+    login_params = params[:user] ? params.require(:user).permit(:username, :password) : params.permit(:username, :password)
+    user = User.find_by(username: login_params[:username])
 
-    if user&.authenticate(params[:password])
+    if user&.authenticate(login_params[:password])
       session[:user_id] = user.id
       token = generate_jwt(user)
 
