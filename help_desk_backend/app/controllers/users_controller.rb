@@ -4,7 +4,6 @@ class UsersController < ApplicationController
     user = User.new(params.permit(:username, :password))
 
     if user.save
-      # Automatically create expert profile for new users
       user.create_expert_profile
 
       session[:user_id] = user.id
