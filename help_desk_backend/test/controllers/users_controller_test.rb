@@ -5,17 +5,18 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # Register
 
   test "registers a new user with valid params" do
-    post "/auth/register", params: { user: { username: "john_doe", password: "password123" } }
+    post "/auth/register", params: { username: "john_doe", password: "password123" }
 
     assert_response :created
 
     json = JSON.parse(response.body)
     assert_equal "john_doe", json["user"]["username"]
-    assert_equal "jwt_token_placeholder", json["token"]
+    assert_not_nil json["token"]
+    assert json["token"].is_a?(String)
   end
 
   test "fails to register user with invalid params" do
-    post "/auth/register", params: { user: { username: "", password: "123" } }
+    post "/auth/register", params: { username: "", password: "123" }
 
     assert_response :unprocessable_entity
 
@@ -34,7 +35,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     json = JSON.parse(response.body)
     assert_equal "john", json["user"]["username"]
-    assert_equal "jwt_token_placeholder", json["token"]
+    assert_not_nil json["token"]
+    assert json["token"].is_a?(String)
   end
 
   test "fails login with invalid credentials" do
@@ -73,7 +75,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     json = JSON.parse(response.body)
     assert_equal "john", json["user"]["username"]
     assert_equal user.id, json["user"]["id"]
-    assert_equal "jwt_token_placeholder", json["token"]
+    assert_not_nil json["token"]
+    assert json["token"].is_a?(String)
   end
 
   test "fails to refresh without session" do
