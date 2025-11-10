@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "duplicate user" do
-    user = User.new(username: "john_doe", password: "password123")
+    user = User.new(username: "already_john", password: "password123")
     refute user.valid?
   end
 

@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  username: john_doe
+  username: already_john
   password_digest: password123
   last_active_at: 2025-11-10 05:51:51
 
 two:
-  username: bob_ross
+  username: already_bob
   password_digest: password321
   last_active_at: 2025-11-10 05:51:51
