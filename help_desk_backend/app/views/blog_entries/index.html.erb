@@ -1,0 +1,13 @@
+<!-- app/views/blog_entries/index.html.erb -->
+
+<h1>Blog Entries</h1>
+
+<% @blog_entries.each do |blog_entry| %>
+  <div class="blog-entry">
+    <h2><%= link_to blog_entry.title, blog_entry %></h2>
+    <p>By <%= blog_entry.author %></p>
+    <p><%= truncate(blog_entry.content, length: 100) %></p>
+  </div>
+<% end %>
+
+<%= link_to 'New Blog Entry', new_blog_entry_path %>
