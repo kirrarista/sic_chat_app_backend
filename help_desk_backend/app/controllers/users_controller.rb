@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
   # POST /auth/register
   def register
-    user_params = params[:user] ? params.require(:user).permit(:username, :password) : params.permit(:username, :password)
+    user_params = if params[:user]&.key?(:password)
+                    params.require(:user).permit(:username, :password)
+                  else
+                    params.permit(:username, :password)
+                  end
     user = User.new(user_params)
 
     if user.save
@@ -26,7 +30,11 @@ class UsersController < ApplicationController
 
   # POST /auth/login
   def login
-    login_params = params[:user] ? params.require(:user).permit(:username, :password) : params.permit(:username, :password)
+    login_params = if params[:user]&.key?(:password)
+                     params.require(:user).permit(:username, :password)
+                   else
+                     params.permit(:username, :password)
+                   end
     user = User.find_by(username: login_params[:username])
 
     if user&.authenticate(login_params[:password])

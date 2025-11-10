@@ -233,3 +233,9 @@ chown -R rails:rails .
 exit
 rails server -b 0.0.0.0 -p 3000
 exit
+chown -R rails:rails .
+exit
+rails server -b 0.0.0.0 -p 3000
+rails server -b 0.0.0.0 -p 3000
+rails test
+exit
